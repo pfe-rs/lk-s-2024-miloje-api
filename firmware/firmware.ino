@@ -11,7 +11,7 @@ const int ultra_pin_echo = A0;
 HardwareSerial& SERIAL_UART = Serial;
 HardwareSerial& SERIAL_BLUETOOTH = Serial3;
 
-Communication comm(SERIAL_BLUETOOTH, servo_up_pin, servo_down_pin, ultra_pin_trig, ultra_pin_echo, step_left_pin, dir_left_pin, step_right_pin, dir_right_pin);
+Communication comm(SERIAL_UART, servo_up_pin, servo_down_pin, ultra_pin_trig, ultra_pin_echo, step_left_pin, dir_left_pin, step_right_pin, dir_right_pin);
 
 void setup() {
   comm.Setup();
