@@ -49,8 +49,11 @@ class UART(Communication):
         try:
             if not self.conn.is_open:
                 raise Exception(f"Serial port {self.port} is not open.")
-            data = self.conn.read_all()
-            return data.decode()
+            data = self.conn.read_all().decode()
+            while len(data) == 0:
+                data = self.conn.read_all().decode()
+                time.sleep(0.2)
+            return data
         except Exception as err:
             print(f"Error while receiving: {err}")
             return None
@@ -62,5 +65,5 @@ if __name__ == '__main__':
     while True:
         query = str(input("Give MILOJE an instruction: "))
         uart.send(query)
-        print(uart.receive())
-        time.sleep(2)
+        if query[0] == 'S':
+            print(uart.receive())
