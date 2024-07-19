@@ -2,8 +2,9 @@
 
 Communication::Communication(
   HardwareSerial& serial,
-  Capability* capabilities[]
-) : serial(serial), capabilities(capabilities), numCapabilities(sizeof(capabilities) / sizeof(Capability*)) {}
+  Capability* capabilities[],
+  int numCapabilities
+) : serial(serial), capabilities(capabilities), numCapabilities(numCapabilities) {}
 
 void Communication::commSetup(int baudRate) {
   serial.begin(baudRate);
@@ -23,6 +24,8 @@ void Communication::decode(String *strs) {
 }
 
 void Communication::commLoop() {
+  serial.println("podaci za ristu");
+  delay(1000);
   String str, strs[20];
   if (serial.available() > 0) {
     str = serial.readString();

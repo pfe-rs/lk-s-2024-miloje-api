@@ -21,7 +21,7 @@ Capability* capabilities[] = {
   &servoMotor2 
 };
 
-Communication comm(SERIAL_UART, capabilities);
+Communication comm(SERIAL_BLUETOOTH, capabilities, sizeof(capabilities) / sizeof(Capability*));
 
 void setup() {
   comm.commSetup(9600);

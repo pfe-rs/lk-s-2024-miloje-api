@@ -5,7 +5,7 @@
 class Communication
 {
   public:
-    Communication(HardwareSerial& serial, Capability* capabilities[]);
+    Communication(HardwareSerial& serial, Capability* capabilities[], int numCapabilities);
     void commSetup(int baudRate);           // Start listening on the serial
     void commLoop();                        // Loop for checking incoming instructions
     void decode(String *strs);          // Decoder of the incoming instruction
