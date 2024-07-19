@@ -4,7 +4,7 @@ StepperMotor::StepperMotor(
     int stepPin, int dirPin
 ) : stepper(AccelStepper::DRIVER, stepPin, dirPin) {}
 
-void StepperMotor::decode(String* strs) {
+void StepperMotor::decode(String* strs, HardwareSerial& serial) {
     String dir = strs[1];
     int spd = strs[2].toInt();
     int distance = strs[3].toInt();

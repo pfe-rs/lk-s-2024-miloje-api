@@ -8,7 +8,8 @@ Communication::Communication(
 
 void Communication::commSetup(int baudRate) {
   serial.begin(baudRate);
-  serial.println(numCapabilities);
+  for(int i = 0; i < numCapabilities; i++)
+    capabilities[i]->setup();
 }
 
 void Communication::getCapabilities() {
@@ -20,12 +21,15 @@ void Communication::getCapabilities() {
 
 void Communication::decode(String *strs) {
   int id = strs[0].toInt();
-  capabilities[id]->decode(strs + 1);
+  capabilities[id]->decode(strs + 1, serial);
 }
 
 void Communication::commLoop() {
-  serial.println("podaci za ristu");
-  delay(1000);
+  String *strs2 = new String[1];
+  strs2[0] = "1";
+  capabilities[2]->decode(strs2, serial);
+  //serial.println("rista dvadeset karaktera jos malo");
+  //getCapabilities();
   String str, strs[20];
   if (serial.available() > 0) {
     str = serial.readString();
@@ -43,5 +47,6 @@ void Communication::commLoop() {
     }
   }
 
-  decode(strs);
+  if(StringCount != 0)
+    decode(strs);
 }
