@@ -1,33 +1,33 @@
-#include "include/Communication.h"
-
-// Stepper pins
-const int step_left_pin = 11;
-const int step_right_pin = 12;
-
-// Dir pins
-const int dir_left_pin = 50;
-const int dir_right_pin = 47;
-
-// Servos control pins
-const int servo_down_pin = 2;
-const int servo_up_pin = 3;
-
-// Ultrasonic pins
-const int ultra_pin_trig = 23;
-const int ultra_pin_echo = A0;
+#define UBRRH
+#define UBRR3H
+#include "Communication.h"
+#include "ServoMotor.h"
+#include "StepperMotor.h"
 
 // Serials
 HardwareSerial& SERIAL_UART = Serial;
 HardwareSerial& SERIAL_BLUETOOTH = Serial3;
 
-Communication comm(SERIAL_UART, servo_up_pin, servo_down_pin, ultra_pin_trig, ultra_pin_echo, step_left_pin, dir_left_pin, step_right_pin, dir_right_pin);
+ServoMotor servoMotor1(2);
+ServoMotor servoMotor2(3);
+StepperMotor stepperMotor1(11, 50);
+StepperMotor stepperMotor2(12, 47);
+
+// Array of Capability pointers
+Capability* capabilities[] = {
+  &stepperMotor1,
+  &stepperMotor2,
+  &servoMotor1,
+  &servoMotor2 
+};
+
+Communication comm(SERIAL_UART, capabilities);
 
 void setup() {
-  comm.setup();
+  comm.commSetup(9600);
 }
 
-void loop()
-{
-  comm.loop();
+void loop() {
+  comm.commLoop();
   delay(500);
 }
