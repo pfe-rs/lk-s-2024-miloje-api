@@ -7,7 +7,6 @@ void ServoMotor::setup() {
 }
 
 void ServoMotor::decode(String* strs, HardwareSerial& serial) {
-    serial.println(strs[0].toInt());
     setPosition(strs[0].toInt());
 }
 

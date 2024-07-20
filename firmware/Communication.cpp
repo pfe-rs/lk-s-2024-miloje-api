@@ -10,6 +10,12 @@ void Communication::commSetup(int baudRate) {
   serial.begin(baudRate);
   for(int i = 0; i < numCapabilities; i++)
     capabilities[i]->setup();
+  for(int i = 0; i < numCapabilities; i++) {
+    if(capabilities[i]->type() == 'B') {
+      batteryId = i;
+      break;
+    }
+  }
 }
 
 void Communication::getCapabilities() {
@@ -25,15 +31,22 @@ void Communication::decode(String *strs) {
 }
 
 void Communication::commLoop() {
-  String *strs2 = new String[1];
-  strs2[0] = "1";
-  capabilities[2]->decode(strs2, serial);
-  //serial.println("rista dvadeset karaktera jos malo");
-  //getCapabilities();
+  float batteryLevel = capabilities[batteryId]->checkLevel();
+  if(batteryLevel <= 11 && batteryLevel >= 2) {
+    tone(6, 880);
+    delay(100);
+    tone(6, 440);
+    delay(100);
+    noTone(6);
+    delay(20);
+  }
+
   String str, strs[20];
   if (serial.available() > 0) {
-    str = serial.readString();
+    str = serial.readStringUntil('\n');
   }
+
+  serial.println(str);
   
   int StringCount = 0;
   while (str.length() > 0) {

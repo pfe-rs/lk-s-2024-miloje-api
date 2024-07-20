@@ -10,6 +10,7 @@ class StepperMotor : public Capability {
         void backward(int speed, int distance);
         char type() override;
     private:
+        int stepPin, dirPin;
         AccelStepper stepper;
 };
 

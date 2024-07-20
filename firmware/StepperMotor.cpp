@@ -5,9 +5,10 @@ StepperMotor::StepperMotor(
 ) : stepper(AccelStepper::DRIVER, stepPin, dirPin) {}
 
 void StepperMotor::decode(String* strs, HardwareSerial& serial) {
-    String dir = strs[1];
-    int spd = strs[2].toInt();
-    int distance = strs[3].toInt();
+    String dir = strs[0];
+    int spd = strs[1].toInt();
+    int distance = strs[2].toInt();
+    serial.println(dir);
     if(dir == "F")
       forward(spd, distance);
     else if(dir == "B")
@@ -20,7 +21,7 @@ void StepperMotor::forward(int speed, int distance) {
 
     stepper.setMaxSpeed(speed);
     stepper.setAcceleration(800);
-    stepper.moveTo(distance);
+    stepper.move(distance);
 
     while (stepper.distanceToGo() != 0)
         stepper.run();
@@ -33,7 +34,7 @@ void StepperMotor::backward(int speed, int distance) {
 
     stepper.setMaxSpeed(speed);
     stepper.setAcceleration(800);
-    stepper.moveTo(-distance);
+    stepper.move(-distance);
 
     while (stepper.distanceToGo() != 0)
         stepper.run();

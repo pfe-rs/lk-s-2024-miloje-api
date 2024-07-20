@@ -39,7 +39,7 @@ class UART(Communication):
             if not self.conn.is_open:
                 raise Exception(f"Serial port {self.port} is not open.")
             
-            self.conn.write(data.encode())
+            self.conn.write(data.encode() + b'\n')
 
         except Exception as err:
             print(f"Error while sending: {err}")
@@ -60,7 +60,7 @@ class UART(Communication):
 
 
 if __name__ == '__main__':
-    uart = UART("/dev/ttyACM1", 9600)
+    uart = UART("/dev/ttyACM0", 9600)
     
     while True:
         query = str(input("Give MILOJE an instruction: "))

@@ -9,6 +9,7 @@ class Capability {
         virtual char type();
         virtual void setup();
         virtual void decode(String* strs, HardwareSerial& serial);
+        virtual float checkLevel(); // temporary here
 };
 
 #endif

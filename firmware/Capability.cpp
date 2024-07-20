@@ -3,3 +3,5 @@
 Capability::Capability() {}
 
 void Capability::setup() {}
+
+float Capability::checkLevel() {}

@@ -6,7 +6,7 @@ class Battery : public Capability {
     public:
         Battery();
         void decode(String* strs, HardwareSerial& serial) override;
-        float checkLevel();
+        float checkLevel() override;
         char type() override;
 };
 
