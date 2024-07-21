@@ -8,6 +8,7 @@ class StepperMotor : public Capability {
         void decode(String* strs, HardwareSerial& serial) override;
         void forward(int speed, int distance);
         void backward(int speed, int distance);
+        void run();
         char type() override;
     private:
         int stepPin, dirPin;

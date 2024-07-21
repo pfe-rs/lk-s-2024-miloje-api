@@ -15,6 +15,7 @@ void Communication::commSetup(int baudRate) {
       batteryId = i;
       break;
     }
+    
   }
 }
 
@@ -62,4 +63,8 @@ void Communication::commLoop() {
 
   if(StringCount != 0)
     decode(strs);
+  for(int id = 0; id < numCapabilities; id++) {
+    if(capabilities[id]->type() == 'M')
+      capabilities[id]->run();
+  }
 }

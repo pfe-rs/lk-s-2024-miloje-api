@@ -23,10 +23,10 @@ void StepperMotor::forward(int speed, int distance) {
     stepper.setAcceleration(800);
     stepper.move(distance);
 
-    while (stepper.distanceToGo() != 0)
-        stepper.run();
-    stepper.stop();
+    stepper.run();
 }
+
+
 
 void StepperMotor::backward(int speed, int distance) {
     speed /= 5;
@@ -36,9 +36,16 @@ void StepperMotor::backward(int speed, int distance) {
     stepper.setAcceleration(800);
     stepper.move(-distance);
 
-    while (stepper.distanceToGo() != 0)
-        stepper.run();
-    stepper.stop();
+    stepper.run();
+    
+}
+
+void StepperMotor::run()
+{
+    if(stepper.distanceToGo()!=0)
+        {stepper.run();
+        }
+    
 }
 
 char StepperMotor::type() {

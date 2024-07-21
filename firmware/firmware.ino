@@ -22,7 +22,7 @@ Capability* capabilities[] = {
   &stepperMotor2
 };
 
-Communication comm(SERIAL_UART, capabilities, sizeof(capabilities) / sizeof(Capability*));
+Communication comm(SERIAL_BLUETOOTH, capabilities, sizeof(capabilities) / sizeof(Capability*));
 
 void setup() {
   pinMode(6, OUTPUT);
@@ -31,5 +31,5 @@ void setup() {
 
 void loop() {
   comm.commLoop();
-  delay(100);
+  delay(10);
 }
