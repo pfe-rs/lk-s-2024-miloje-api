@@ -1,12 +1,19 @@
 #include "ServoMotor.h"
 
-#include <Arduino.h>
+ServoMotor::ServoMotor(int pin) : pin(pin) {}
 
+void ServoMotor::setup() {
+    servo.attach(pin); 
+}
 
-ServoMotor::ServoMotor(int servoPin) : servoPin(servoPin){}
+void ServoMotor::decode(String* strs, HardwareSerial& serial) {
+    setPosition(strs[0].toInt());
+}
 
-void Head::Setup()
-{
-  servoUp.attach(servoPinUp);
-  servoDown.attach(servoPinDown);
+void ServoMotor::setPosition(int pos) {
+    servo.write(pos);
+}
+
+char ServoMotor::type() {
+    return 'S';
 }

@@ -1,25 +1,24 @@
 #ifndef _COMMUNICATION_H
 #define _COMMUNICATION_H
-
-#include "Steppers.h"
-#include "Head.h"
+#include "Capability.h"
 
 class Communication
 {
-public:
-  Communication(HardwareSerial& serial, int servoPinUp, int servoPinDown, int ultraPinTrig, int ultraPinEcho, int stepLeftPin, int stepLeftDir, int stepRightPin, int stepRightDir);
-  void Setup();
-  void Loop();
-  void DecodeType(String *strs);
-  void DecodeMotor(String *strs);
-  void DecodeSensor(String *strs);
-  void DecodeServo(String *strs);
-  void DecodeStepper(String *strs);
+  public:
+    Communication(HardwareSerial& serial, Capability* capabilities[], int numCapabilities);
+    void commSetup(int baudRate);       // Start listening on the serial
+    void commLoop();                    // Loop for checking incoming instructions
+    void decode(String *strs);          // Decoder of the incoming instruction
+    //void decodeMulti(String *strs[]);   // Decoder of multiple incoming instructions that need to be run in parallel   
+    void handleServo(String *strs);     // Servo instruction decoder
+    void handleStepper(String *strs);   // Stepper instruction decoder
+    void getCapabilities();             // Return list of capabilities (in a string)
+  private:
+    HardwareSerial& serial;
+    Capability** capabilities;
 
-private:
-  HardwareSerial& serial;
-  Steppers steppers;
-  Head head;
+    int numCapabilities;
+    int batteryId = -1;
 };
 
 #endif

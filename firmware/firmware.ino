@@ -1,25 +1,37 @@
 #include "Communication.h"
+#include "ServoMotor.h"
+#include "StepperMotor.h"
+#include "Battery.h"
+#include "UltraSonic.h"
 
-const int step_left_pin = 11;
-const int step_right_pin = 12;
-const int dir_left_pin = 50;
-const int dir_right_pin = 47;
-const int servo_down_pin = 2;
-const int servo_up_pin = 3;
-const int ultra_pin_trig = 23;
-const int ultra_pin_trig = 4;
-const int ultra_pin_echo = A0;
+// Serials
 HardwareSerial& SERIAL_UART = Serial;
 HardwareSerial& SERIAL_BLUETOOTH = Serial3;
 
-Communication comm(SERIAL_UART, servo_up_pin, servo_down_pin, ultra_pin_trig, ultra_pin_echo, step_left_pin, dir_left_pin, step_right_pin, dir_right_pin);
+ServoMotor servoMotor1(2);
+ServoMotor servoMotor2(4);
+Battery battery;
+StepperMotor stepperMotor1(10, 52);
+StepperMotor stepperMotor2(11, 47);
+UltraSonic ultraSonic(23,A0);
+
+// Array of Capability pointers
+Capability* capabilities[] = {
+  &servoMotor1,
+  &servoMotor2,
+  &battery,
+  &stepperMotor1,
+  &stepperMotor2,
+  &ultraSonic
+};
+Communication comm(SERIAL_BLUETOOTH, capabilities, sizeof(capabilities) / sizeof(Capability*));
 
 void setup() {
-  comm.Setup();
+  pinMode(6, OUTPUT);
+  comm.commSetup(9600);
 }
 
-void loop()
-{
-  comm.Loop();
-  delay(500);
+void loop() {
+  comm.commLoop();
+  delay(10);
 }
