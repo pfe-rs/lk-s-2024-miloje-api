@@ -11,6 +11,9 @@ class Capability {
         virtual void decode(String* strs, HardwareSerial& serial);
         virtual void run();
         virtual float checkLevel(); // temporary here
+        bool enabled=true;
+        void enable();
+        void disable();
 };
 
 #endif

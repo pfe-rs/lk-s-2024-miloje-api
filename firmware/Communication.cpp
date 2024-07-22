@@ -28,7 +28,8 @@ void Communication::getCapabilities() {
 
 void Communication::decode(String *strs) {
   int id = strs[0].toInt();
-  capabilities[id]->decode(strs + 1, serial);
+  if(capabilities[id]->enabled)
+    capabilities[id]->decode(strs + 1, serial);
 }
 
 void Communication::commLoop() {
@@ -40,6 +41,8 @@ void Communication::commLoop() {
     delay(100);
     noTone(6);
     delay(20);
+    for(int id=0;id<numCapabilities;id++)
+    capabilities[id]->enabled=false;
   }
 
   String str, strs[20];
@@ -47,8 +50,6 @@ void Communication::commLoop() {
     str = serial.readStringUntil('\n');
   }
 
-  serial.println(str);
-  
   int StringCount = 0;
   while (str.length() > 0) {
     int index = str.indexOf(' ');

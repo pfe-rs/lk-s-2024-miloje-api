@@ -2,6 +2,7 @@
 #include "ServoMotor.h"
 #include "StepperMotor.h"
 #include "Battery.h"
+#include "UltraSonic.h"
 
 // Serials
 HardwareSerial& SERIAL_UART = Serial;
@@ -12,6 +13,7 @@ ServoMotor servoMotor2(4);
 Battery battery;
 StepperMotor stepperMotor1(10, 52);
 StepperMotor stepperMotor2(11, 47);
+UltraSonic ultraSonic(23,A0);
 
 // Array of Capability pointers
 Capability* capabilities[] = {
@@ -19,9 +21,9 @@ Capability* capabilities[] = {
   &servoMotor2,
   &battery,
   &stepperMotor1,
-  &stepperMotor2
+  &stepperMotor2,
+  &ultraSonic
 };
-
 Communication comm(SERIAL_BLUETOOTH, capabilities, sizeof(capabilities) / sizeof(Capability*));
 
 void setup() {
