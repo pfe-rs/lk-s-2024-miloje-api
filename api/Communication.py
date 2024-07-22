@@ -59,9 +59,11 @@ class UART(Communication):
             return None
 
 
+'''
+
 if __name__ == '__main__':
-    uart = UART("/dev/ttyACM0", 9600)
+    uart = UART("/dev/rfcomm0", 9600)
     
     while True:
         query = str(input("Give MILOJE an instruction: "))
-        uart.send(query)
+        uart.send(query)'''

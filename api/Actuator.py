@@ -1,18 +1,26 @@
 from Communication import *
 
-class actuator:
-    def __init__(self,communication):
+class Actuator:
+    def __init__(self,communication,index):
         self.communication=communication
-class stepper(actuator):
-    def __init__(self,communication):
-        super().__init__(communication)
-    def clockwise(self,distance,speed):
-        self.communication.send(f"M 2 {distance * 7.87} {speed*7.87}")
+        self.index=index
+
+class Stepper(Actuator):
+    def __init__(self,communication,index):
+        super().__init__(communication,index)
+
+    def clockwise(self,speed,distance):
+        #print(distance)
+        self.communication.send(f"{self.index} F {round(speed*7.87)} {round(distance*7,87)}") #distance in cm and speed in cm/s
+        #print(f"{self.index} F {round(speed*7,87)} {round(distance*7.87)}")
+
     def anticlockwise(self,distance,speed):
-        self.communication.send(f"M 2 {distance * -7.87} {speed*-7.87}")
-class servo(actuator):
-    def __init__(self,communication):
-        super().__init__(communication)
+        self.communication.send(f"{self.index} F {round(-speed*7.87)} {round(-distance*7,87)}")
+
+class Servo(Actuator):
+    def __init__(self,communication,index):
+        super().__init__(communication,index)
+
     def setPosition(self,angle):
-        self.communication.send(f"M 1 {angle}")
+        self.communication.send(f"{self.index} {angle}")
         
