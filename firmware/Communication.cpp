@@ -21,15 +21,12 @@ void Communication::Setup()
 
 void Communication::DecodeServo(String *strs)
 {
-  serial.print(strs[2]);
   if (strs[2] == "10")
   {
-    serial.println("Cross ukljucen");
     head.Cross();
   }
   else if (strs[2] == "11")
   {
-    serial.print(strs[3]);
     int par1 = strs[3].toInt();
     int par2 = strs[4].toInt();
     head.SetMe(par1, par2);
@@ -76,7 +73,6 @@ void Communication::DecodeType(String *strs)
 {
   if (strs[0] == "M")
   {
-    serial.print("M");
     DecodeMotor(strs);
   }
   else if (strs[0] == "S")
