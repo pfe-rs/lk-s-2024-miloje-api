@@ -27,22 +27,26 @@ void Communication::getCapabilities() {
 }
 
 void Communication::decode(String *strs) {
+  if(strs[0]=="C")
+    getCapabilities();
+  else{
   int id = strs[0].toInt();
   if(capabilities[id]->enabled)
-    capabilities[id]->decode(strs + 1, serial);
+    capabilities[id]->decode(strs + 1, serial);}
 }
 
 void Communication::commLoop() {
   float batteryLevel = capabilities[batteryId]->checkLevel();
-  if(batteryLevel <= 11 && batteryLevel >= 2) {
+ if(batteryLevel <= 10.5 && batteryLevel > 2) {
     tone(6, 880);
     delay(100);
     tone(6, 440);
     delay(100);
     noTone(6);
     delay(20);
+    
     for(int id=0;id<numCapabilities;id++)
-    capabilities[id]->enabled=false;
+      capabilities[id]->enabled=false;
   }
 
   String str, strs[20];

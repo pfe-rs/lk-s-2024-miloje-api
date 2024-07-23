@@ -8,7 +8,6 @@ void StepperMotor::decode(String* strs, HardwareSerial& serial) {
     String dir = strs[0];
     int spd = strs[1].toInt();
     int distance = strs[2].toInt();
-    serial.println(dir);
     if(dir == "F")
       forward(spd, distance);
     else if(dir == "B")
@@ -17,12 +16,10 @@ void StepperMotor::decode(String* strs, HardwareSerial& serial) {
 
 void StepperMotor::forward(int speed, int distance) {
     speed /= 5;
-    distance *= (-200);
 
     stepper.setMaxSpeed(speed);
     stepper.setAcceleration(800);
     stepper.move(distance);
-
     stepper.run();
 }
 
@@ -30,7 +27,6 @@ void StepperMotor::forward(int speed, int distance) {
 
 void StepperMotor::backward(int speed, int distance) {
     speed /= 5;
-    distance *= (-200);
 
     stepper.setMaxSpeed(speed);
     stepper.setAcceleration(800);
