@@ -1,28 +1,30 @@
-from Communication import *
+from Communication import Communication
+
 
 class Sensor:
-    def __init__(self, communication,index):
+    def __init__(self, communication: Communication, index: int):
         self.communication = communication
-        self.index=index
+        self.index = index
 
-    def get_data():
-        ...
+    def get_data(self) -> str:
+        return ''
+
 
 class UltraSonic(Sensor):
-    def __init__(self,communication,index):
-        super().__init__(communication,index)
-    def get_data(self):
+    def __init__(self, communication: Communication, index: int):
+        super().__init__(communication, index)
+
+    def get_data(self) -> str:
+        '''Get value (distance) from the ultrasonic sensor'''
         self.communication.send(f"{self.index}")
         return self.communication.receive()
+
 
 class Battery(Sensor):
-    def __init__(self,communication,index):
-        super().__init__(communication,index)
-    def get_data(self):
+    def __init__(self, communication: Communication, index: int):
+        super().__init__(communication, index)
+
+    def get_data(self) -> str:
+        '''Get value (voltage) from the battery'''
         self.communication.send(f"{self.index}")
         return self.communication.receive()
-
-def test():
-    comm= UART("/dev/ttyACM0", 9600)
-    ultrasonic=UltraSonic(comm)
-    print(ultrasonic.get_data())

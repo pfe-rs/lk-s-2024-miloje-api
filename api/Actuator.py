@@ -1,24 +1,29 @@
-from Communication import *
+from Communication import Communication
+
 
 class Actuator:
-    def __init__(self,communication,index):
-        self.communication=communication
-        self.index=index
+    '''Base Actuator class'''
+    def __init__(self, communication: Communication, index: int):
+        self.communication = communication
+        self.index = index
+
 
 class Stepper(Actuator):
-    def __init__(self,communication,index):
-        super().__init__(communication,index)
+    '''Class for controlling a stepper motor'''
+    def __init__(self, communication: Communication, index: int):
+        super().__init__(communication, index)
 
-    def clockwise(self,speed,distance):
-        self.communication.send(f"{self.index} F {round(speed*7.87)} {round(distance*7.87)}")
+    def clockwise(self, speed: int, distance: int):
+        self.communication.send(f"{self.index} F {round(speed * 7.87)} {round(distance * 7.87)}")
 
-    def anticlockwise(self,speed,distance):
-        self.communication.send(f"{self.index} B {round(speed*7.87)} {round(distance*7.87)}")
+    def anticlockwise(self, speed: int, distance: int):
+        self.communication.send(f"{self.index} B {round(speed * 7.87)} {round(distance * 7.87)}")
+
 
 class Servo(Actuator):
-    def __init__(self,communication,index):
-        super().__init__(communication,index)
+    '''Class for controlling a servo motor'''
+    def __init__(self, communication: Communication, index: int):
+        super().__init__(communication, index)
 
-    def setPosition(self,angle):
+    def setPosition(self, angle):
         self.communication.send(f"{self.index} {angle}")
-        

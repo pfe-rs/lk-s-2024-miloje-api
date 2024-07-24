@@ -1,20 +1,21 @@
 import serial
-import time
+
 
 class Communication():
-    def __init__(self, baudRate):
+    def __init__(self, baudRate: int):
         self.baudRate = baudRate
 
     def send(self, data):
-        """Send data to the communication channel"""
-        pass
-    
-    def receive(self):
-        """Receive data from the communication channel"""
+        '''Send data to the communication channel'''
         pass
 
+    def receive(self) -> str:
+        '''Receive data from the communication channel'''
+        return ''
+
+
 class UART(Communication):
-    def __init__(self, port, baudRate, timeout=1):
+    def __init__(self, port: str, baudRate: int, timeout: int = 1):
         super().__init__(baudRate)
         self.port = port
         self.byteSize = serial.EIGHTBITS
@@ -30,40 +31,27 @@ class UART(Communication):
                 stopbits=self.stopBits,
                 timeout=self.timeout
             )
-        except:
-            print(f"Error while opening port {self.port}")
+        except Exception as err:
+            print(f"Error: {err}")
 
-    def send(self, data):
-        """Send data to the communication channel"""
+    def send(self, data: str):
+        '''Send data to the communication channel'''
         try:
             if not self.conn.is_open:
                 raise Exception(f"Serial port {self.port} is not open.")
-            
+
             self.conn.write(data.encode() + b'\n')
 
         except Exception as err:
             print(f"Error while sending: {err}")
-    
-    def receive(self):
-        """Receive data from the communication channel"""
-        try:
-            if not self.conn.is_open:
-                raise Exception(f"Serial port {self.port} is not open.")
-            data = self.conn.read_all().decode()
-            while len(data) == 0:
-                data = self.conn.read_all().decode()
-                time.sleep(0.2)
-            return data
-        except Exception as err:
-            print(f"Error while receiving: {err}")
-            return None
 
+    def receive(self) -> str:
+        '''Receive data from the communication channel'''
+        if not self.conn.is_open:
+            raise Exception(f"Serial port {self.port} is not open.")
 
-'''
-
-if __name__ == '__main__':
-    uart = UART("/dev/rfcomm0", 9600)
-    
-    while True:
-        query = str(input("Give MILOJE an instruction: "))
-        uart.send(query)'''
+        data_bytes = self.conn.read_all()
+        if data_bytes:
+            return data_bytes.decode()
+        else:
+            return ''
