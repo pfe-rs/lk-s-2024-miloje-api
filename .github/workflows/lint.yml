@@ -16,14 +16,16 @@ jobs:
         with:
           cache: 'pip'
           python-version: "3.12"
-      - run: |
+      - name: 'Install requirements'
+        run: |
           python -m venv .venv
           source .venv/bin/activate
           pip install -r requirements.txt
-      - run: echo "$PWD/.venv/bin" >> $GITHUB_PATH
-      - name: 'Lint: flake8'
-        uses: py-actions/flake8@v2.3.0
-      - name: 'Lint: mypy'
+      - name: 'Modify Actions PATH'
+        run: echo "$PWD/.venv/bin" >> $GITHUB_PATH
+      - name: 'Lint: Pyright'
         uses: jakebailey/pyright-action@v2
         with:
           version: PATH
+      - name: 'Lint: flake8'
+        uses: py-actions/flake8@v2.3.0
