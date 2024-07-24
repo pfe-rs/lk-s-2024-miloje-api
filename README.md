@@ -6,6 +6,7 @@ koristi za buduće letnje projekte koji se bave izradom robota.
 U ovom repozitorijumu se može naći kod i potrebna dokumentacija za Miloja.
 
 ## Doprinošenje
+[![Lint](https://github.com/pfe-rs/lk-s-2024-miloje-api/actions/workflows/lint.yml/badge.svg)](https://github.com/pfe-rs/lk-s-2024-miloje-api/actions/workflows/lint.yml)
 
 Ovaj repozitorijum koristi dva lintera:
 
