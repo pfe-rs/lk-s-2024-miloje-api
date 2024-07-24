@@ -4,10 +4,11 @@
 #include "Battery.h"
 #include "UltraSonic.h"
 
-// Serials
+// Hardware serials
 HardwareSerial& SERIAL_UART = Serial;
 HardwareSerial& SERIAL_BLUETOOTH = Serial3;
 
+// Declaration of Milojes capabilities
 ServoMotor servoMotor1(2);
 ServoMotor servoMotor2(4);
 Battery battery;
@@ -33,5 +34,5 @@ void setup() {
 
 void loop() {
   comm.commLoop();
-  delay(10);
+  //delay(10);
 }

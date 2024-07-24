@@ -3,6 +3,7 @@ from Actuator import *
 from Wheels import *
 from Head import *
 import time
+import keyboard
 
 class Miloje:
     def __init__(self,communication):
@@ -48,39 +49,11 @@ if __name__ == '__main__':
     miloje.head.vertical_angle(0)
 
     while True:
-        query = input("Insert a command: ")
-
-        if query == "F":
-            miloje.head.horizontal_angle(0)
-            miloje.head.vertical_angle(90)
-            sensorDistance = float(miloje.head.ultraSonicRead())
-            for _ in range(10):
-                if sensorDistance < 30:
-                    sensorDistance = float(miloje.head.ultraSonicRead())
-                if sensorDistance > 30:
-                    miloje.wheels.forward(500, 10)
-        elif query == "B":
-            miloje.head.horizontal_angle(180)
-            miloje.head.vertical_angle(90)
-            sensorDistance = float(miloje.head.ultraSonicRead())
-            for _ in range(10):
-                if sensorDistance < 30:
-                    sensorDistance = float(miloje.head.ultraSonicRead())
-                if sensorDistance > 30:
-                    miloje.wheels.backward(500, 10)
-        elif query == "90":
-            miloje.wheels.spinClockwise(100, 90)
-        elif query == "45":
-            miloje.wheels.spinClockwise(100, 45)
-        elif query == "-90":
-            miloje.wheels.spinAntiClockwise(100, 90)
-        elif query == "-45":
-            miloje.wheels.spinAntiClockwise(100, 45)
-
-    while True:
-        miloje.head.vertical_angle(0)
-        time.sleep(1)
-        miloje.head.vertical_angle(120)
-        time.sleep(1)
-        print(miloje.head.ultraSonicRead())
-        time.sleep(0.5)
+        if keyboard.is_pressed('w'):
+            miloje.wheels.forward(900, 10)
+        elif keyboard.is_pressed('a'):
+            miloje.wheels.spinAntiClockwise(100, 10)
+        elif keyboard.is_pressed('s'):
+            miloje.wheels.backward(900, 10)
+        elif keyboard.is_pressed('d'):
+            miloje.wheels.spinClockwise(100, 10)
