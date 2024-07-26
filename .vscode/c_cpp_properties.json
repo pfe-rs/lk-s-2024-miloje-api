@@ -1,0 +1,22 @@
+{
+    "configurations": [
+        {
+            "name": "Linux",
+            "includePath": [
+                "${workspaceFolder}/**",
+                "/usr/lib/avr/include",
+                "/usr/share/arduino/hardware/arduino/avr/cores/arduino",
+                "/home/pfe-admin/Arduino/libraries/AccelStepper/src",
+                "/home/pfe-admin/Arduino/libraries/Servo/src",
+                "/home/pfe-admin/Arduino/libraries/Servo/src",
+                "/usr/share/arduino/hardware/arduino/avr/variants/mega"
+            ],
+            "defines": [],
+            "compilerPath": "/usr/bin/gcc",
+            "cStandard": "c17",
+            "cppStandard": "gnu++17",
+            "intelliSenseMode": "linux-gcc-x64"
+        }
+    ],
+    "version": 4
+}
