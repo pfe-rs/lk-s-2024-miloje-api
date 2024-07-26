@@ -8,13 +8,13 @@ class Wheels:
 
     def forward(self, speed: int, distance: int):
         """Move MILOJE forward"""
-        self.stepper1.anticlockwise(speed, distance)
-        self.stepper2.clockwise(speed, distance)
+        self.stepper1.clockwise(speed, distance)
+        self.stepper2.anticlockwise(speed, distance)
 
     def backward(self, speed: int, distance: int):
         """Move MILOJE backward"""
-        self.stepper1.clockwise(speed, distance)
-        self.stepper2.anticlockwise(speed, distance)
+        self.stepper1.anticlockwise(speed, distance)
+        self.stepper2.clockwise(speed, distance)
 
     def spin_clockwise(self, speed: int, angle: int):
         """Spin MILOJE in the clockwise direction"""
