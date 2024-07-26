@@ -1,19 +1,19 @@
 #ifndef _CAPABILITY_H
 #define _CAPABILITY_H
-#include <Servo.h>
-#include <AccelStepper.h>
+
+#include <Arduino.h>
+#include <HardwareSerial.h>
 
 class Capability {
-    public:
-        Capability();
-        virtual char type();
+    public: 
+        virtual char type() = 0;
         virtual void setup();
         virtual void decode(String* strs, HardwareSerial& serial);
         virtual void run();
-        virtual float checkLevel(); // temporary here
-        bool enabled=true;
+        bool isEnabled();
         void enable();
         void disable();
+        bool enabled=true;
 };
 
 #endif

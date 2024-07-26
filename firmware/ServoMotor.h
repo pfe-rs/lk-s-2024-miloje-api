@@ -1,6 +1,7 @@
 #ifndef _SERVOMOTOR_H
 #define _SERVOMOTOR_H
 #include "Capability.h"
+#include <Servo.h>
 
 class ServoMotor : public Capability {
     public:

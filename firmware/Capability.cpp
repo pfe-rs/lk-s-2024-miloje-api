@@ -1,19 +1,16 @@
 #include "Capability.h"
 
-Capability::Capability() {}
-
 void Capability::setup() {}
 
 void Capability::run() {}
 
-float Capability::checkLevel() {}
-
-void Capability::enable()
-{
-enabled=true;  
+bool Capability::isEnabled() {
+    return this->enabled;
 }
 
-void Capability::disable()
-{
-enabled=false;  
+void Capability::enable() {
+    this->enabled = true;
+}
+void Capability::disable() {
+    this->enabled = false;
 }

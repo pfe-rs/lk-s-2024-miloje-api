@@ -11,12 +11,13 @@ void UltraSonic::setup() {
 void UltraSonic::decode(String* strs,HardwareSerial& serial){
     float duration, distance;  
     digitalWrite(trigPin, LOW);  
-	delayMicroseconds(2);  
-	digitalWrite(trigPin, HIGH);  
-	delayMicroseconds(10);  
-	digitalWrite(trigPin, LOW);  
+    delayMicroseconds(2);  
+    digitalWrite(trigPin, HIGH);  
+    delayMicroseconds(10);  
+    digitalWrite(trigPin, LOW);  
     duration = pulseIn(echoPin, HIGH);
-    distance = (duration*.0343)/2;  
+    float speedOfSound = 343 / 1000000; // meters per second into meters per microsecond
+    distance = (duration * speedOfSound) / 2;  
     serial.println(distance);
 }
 
