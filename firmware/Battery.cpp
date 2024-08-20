@@ -6,7 +6,7 @@ void Battery::decode(String* strs, HardwareSerial& serial) {
     serial.println(getLevel());
 }
 
-float Battery::getLevel() {
+float Battery::getLeve() {
     int ADC_RESOLUTION=1024;
     int ARDUINO_VOLTAGE=5;
     float MEASUREMENT_OFFSET=0.7;
