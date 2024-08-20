@@ -1,0 +1,22 @@
+name: Compile Arduino code
+
+on:
+- push
+- workflow_dispatch
+
+jobs:
+  compile:
+    runs-on: ubuntu-latest
+    name: Compile
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+    - uses: arduino/compile-sketches@v1
+      with:
+        fqbn: "arduino:avr:mega"
+        libraries: |
+          - name: Servo
+          - name: AccelStepper
+        sketch-paths: |
+          - firmware
+        enable-warnings-report: true
