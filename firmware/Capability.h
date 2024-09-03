@@ -13,6 +13,7 @@ class Capability {
         bool isEnabled();
         void enable();
         void disable();
+    private:
         bool enabled=true;
 };
 

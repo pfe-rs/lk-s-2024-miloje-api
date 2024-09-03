@@ -6,9 +6,9 @@ StepperMotor::StepperMotor(
 
 void StepperMotor::decode(String* strs, HardwareSerial& serial) {
     String dir = strs[0];
-    int spd = strs[1].toInt();
+    int speed = strs[1].toInt();
     int distance = strs[2].toInt();
-    moveClockwise(spd, distance);
+    moveClockwise(speed, distance);
 }
 
 void StepperMotor::moveClockwise(int speed, int distance) {

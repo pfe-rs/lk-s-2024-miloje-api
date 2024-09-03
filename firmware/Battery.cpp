@@ -1,5 +1,9 @@
 #include "Battery.h"
 
+const float ADCResolution = 1024.0;
+const float arduinoVoltage  = 5.0;
+const float measurementOffset = 0.7;
+
 Battery::Battery(int pin) : pin(pin) {}
 
 void Battery::decode(String* strs, HardwareSerial& serial) {
@@ -7,10 +11,7 @@ void Battery::decode(String* strs, HardwareSerial& serial) {
 }
 
 float Battery::getLevel() {
-    int ADC_RESOLUTION=1024;
-    int ARDUINO_VOLTAGE=5;
-    float MEASUREMENT_OFFSET=0.7;
-    return (float(analogRead(pin)) / (float)ADC_RESOLUTION) * 3 * (float)ARDUINO_VOLTAGE + MEASUREMENT_OFFSET;
+    return (float(analogRead(pin)) / ADCResolution) * 3 * arduinoVoltage + measurementOffset;
 }
 
 char Battery::type() {

@@ -5,12 +5,12 @@ void Capability::setup() {}
 void Capability::run() {}
 
 bool Capability::isEnabled() {
-    return this->enabled;
+    return enabled;
 }
 
 void Capability::enable() {
-    this->enabled = true;
+    enabled = true;
 }
 void Capability::disable() {
-    this->enabled = false;
+    enabled = false;
 }

@@ -2,6 +2,10 @@
 
 Buzzer::Buzzer(int pin) : pin(pin) {}
 
+void Buzzer::setup() {
+    pinMode(pin, OUTPUT);
+}
+
 void Buzzer::decode(String* strs, HardwareSerial& serial) {
     run();
 }

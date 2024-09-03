@@ -1,5 +1,8 @@
 #include "UltraSonic.h"
 
+// Meters per second into meters per microsecond
+const float speedOfSound = 343.0 / 1000000.0;
+
 UltraSonic::UltraSonic(int trigPin, int echoPin) :
     trigPin(trigPin), echoPin(echoPin) {}
 
@@ -16,7 +19,6 @@ void UltraSonic::decode(String* strs,HardwareSerial& serial){
     delayMicroseconds(10);  
     digitalWrite(trigPin, LOW);  
     duration = pulseIn(echoPin, HIGH);
-    float speedOfSound = 343 / 1000000; // meters per second into meters per microsecond
     distance = (duration * speedOfSound) / 2;  
     serial.println(distance);
 }

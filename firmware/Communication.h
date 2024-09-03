@@ -5,15 +5,15 @@
 class Communication
 {
     public:
-      Communication(HardwareSerial& serial, Capability* capabilities[], int numCapabilities);
-      void commSetup(int baudRate);       
-      void commLoop();                   
-      void decode(String *strs);          
-      void getCapabilities();            
+        Communication(HardwareSerial& serial, Capability* capabilities[], int numCapabilities);
+        void commSetup(int baudRate);       
+        void commLoop();                   
+        void decode(String *strs);          
+        void getCapabilities();            
     private:
-      HardwareSerial& serial;
-      Capability** capabilities;
-      int numCapabilities;  
+        HardwareSerial& serial;
+        Capability** capabilities;
+        int numCapabilities;  
 };
 
 #endif
