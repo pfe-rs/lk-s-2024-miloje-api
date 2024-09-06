@@ -23,8 +23,13 @@ class UART(Communication):
 
     def receive(self) -> str:
         """Receive data from the communication channel"""
-        data = self.conn.read_all().decode()
-        while len(data) == 0:
-            data = self.conn.read_all().decode()
-            time.sleep(0.5)
+        data = self.conn.read_all()
+        if data is not None:
+            data = data.decode()
+        else:
+            while data is None or len(data) == 0:
+                time.sleep(0.5)
+                data = self.conn.read_all()
+                if data is not None:
+                    data = data.decode()
         return data.strip()
