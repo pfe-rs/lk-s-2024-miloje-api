@@ -41,7 +41,7 @@ void loop() {
 
     float batteryLevel = battery.getLevel();
   if (batteryLevel <= 11 && batteryLevel > 6) {
-    buzzer.run();
+    buzzer.buzz(880);
     //for (int id = 0; id < numCapabilities; id++)
     //  capabilities[id]->disable();
   }

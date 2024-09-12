@@ -50,8 +50,9 @@ void Communication::commLoop() {
             str = str.substring(index + 1);
         }
     }
-    if(stringCount != 0)
+    if(stringCount != 0){
         decode(strs);
+    }
     for(int id = 0; id < numCapabilities; id++) {
         capabilities[id]->run();
     }

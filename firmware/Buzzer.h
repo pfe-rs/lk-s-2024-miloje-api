@@ -7,7 +7,7 @@ class Buzzer : public Capability {
         Buzzer(int pin);
         void decode(String* strs, HardwareSerial& serial) override;
         void setup() override;
-        void run() override;
+        void buzz(int frequency);
         char type() override;
     private:
         int pin;
