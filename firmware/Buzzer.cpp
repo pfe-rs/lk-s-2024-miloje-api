@@ -7,7 +7,7 @@ void Buzzer::setup() {
 }
 
 void Buzzer::decode(String* strs, HardwareSerial& serial) {
-    run();
+    buzz(880);
 }
 
 void Buzzer::buzz(int frequency) {
