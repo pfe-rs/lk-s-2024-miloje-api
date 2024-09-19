@@ -1,10 +1,13 @@
+from abc import ABC, abstractmethod
+
 from communication.communication import Communication
 
 
-class Sensor:
+class Sensor(ABC):
     def __init__(self, communication: Communication, sensor_id: int):
         self.communication = communication
         self.id = sensor_id
 
-    def get_data(self) -> str:
+    @abstractmethod
+    def get_data(self) -> str | float:
         return ""

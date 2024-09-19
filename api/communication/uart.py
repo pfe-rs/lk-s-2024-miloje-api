@@ -1,6 +1,7 @@
 import time
 
 import serial
+
 from communication.communication import Communication
 
 
@@ -11,9 +12,6 @@ class UART(Communication):
         self.conn = serial.Serial(
             port=self.port,
             baudrate=self.baud_rate,
-            bytesize=serial.EIGHTBITS,
-            parity=serial.PARITY_NONE,
-            stopbits=serial.STOPBITS_ONE,
             timeout=timeout
         )
         time.sleep(1)

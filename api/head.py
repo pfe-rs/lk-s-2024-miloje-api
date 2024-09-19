@@ -14,5 +14,5 @@ class Head:
     def vertical_angle(self, angle: int):
         self.servo2.set_position(angle)
 
-    def ultrasonic_read(self) -> str:
+    def ultrasonic_read(self) -> float:
         return self.ultra_sonic.get_data()

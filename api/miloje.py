@@ -3,11 +3,14 @@ from typing import List
 from actuators.servo import Servo
 from actuators.stepper import Stepper
 from actuators.wheels import Wheels
+from api.communication.uart import UART
 from buzzer import Buzzer
 from communication.communication import Communication
 from head import Head
 from sensors.battery import Battery
 from sensors.ultrasonic import UltraSonic
+
+dummyUART = UART("/dev/rfcomm0", 9600, 1)
 
 CMD_CAPABILITIES = "C 1"
 CAPABILITY_TYPES = {
@@ -32,14 +35,19 @@ class Miloje:
             if char not in self.capabilities and char.isalpha():
                 self.capabilities[char] = []
             self.capabilities[char].append(CAPABILITY_TYPES[char](self.communication, index))
-        self.wheels = Wheels(self.capabilities["M"][0],
-                             self.capabilities["M"][1])
 
-        self.head = Head(self.capabilities["S"][0],
-                         self.capabilities["S"][1],
-                         self.capabilities["U"][0])
+        try:
+            self.wheels = Wheels(self.capabilities["M"][0],
+                                 self.capabilities["M"][1])
+        except IndexError:
+            self.wheels = None
 
-        print("READY")
+        try:
+            self.head = Head(self.capabilities["S"][0],
+                             self.capabilities["S"][1],
+                             self.capabilities["U"][0])
+        except IndexError:
+            self.head = None
 
     def get_steppers(self) -> List[Stepper]:
         return self.capabilities["M"]
