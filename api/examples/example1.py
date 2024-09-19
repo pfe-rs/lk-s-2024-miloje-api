@@ -1,7 +1,6 @@
 from communication.uart import UART
 from miloje import Miloje
 
-
 if __name__ == "__main__":
     miloje = Miloje(UART("/dev/rfcomm0", 9600, 1))
 

@@ -9,7 +9,6 @@ from head import Head
 from sensors.battery import Battery
 from sensors.ultrasonic import UltraSonic
 
-
 CMD_CAPABILITIES = "C 1"
 CAPABILITY_TYPES = {
     "M": Stepper,
