@@ -1,7 +1,6 @@
 import time
 
 import serial
-
 from communication.communication import Communication
 
 

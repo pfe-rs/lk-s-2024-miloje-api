@@ -3,14 +3,12 @@ from typing import List
 from actuators.servo import Servo
 from actuators.stepper import Stepper
 from actuators.wheels import Wheels
-from api.communication.uart import UART
 from buzzer import Buzzer
 from communication.communication import Communication
 from head import Head
 from sensors.battery import Battery
 from sensors.ultrasonic import UltraSonic
 
-dummyUART = UART("/dev/rfcomm0", 9600, 1)
 
 CMD_CAPABILITIES = "C 1"
 CAPABILITY_TYPES = {
