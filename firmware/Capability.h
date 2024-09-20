@@ -4,6 +4,10 @@
 #include <Arduino.h>
 #include <HardwareSerial.h>
 
+/**
+* Capability is an abstract class for all capabilities.
+*/
+
 class Capability {
     public: 
         virtual char type() = 0;

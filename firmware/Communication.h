@@ -2,6 +2,10 @@
 #define _COMMUNICATION_H
 #include "Capability.h"
 
+/**
+* Communication 
+*/
+
 class Communication
 {
     public:
