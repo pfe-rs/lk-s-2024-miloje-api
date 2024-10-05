@@ -20,6 +20,17 @@ CAPABILITY_TYPES = {
 
 
 class Miloje:
+    """MILOJE class for controlling the robot
+
+    Args:
+        communication (Communication): Communication object specifying the communication channel (UART/Bluetooth)
+
+    Attributes:
+        communication (Communication): Communication object specifying the communication channel (UART/Bluetooth)
+        capabilities (dict): Dictionary of capabilities
+        wheels (Wheels): Wheels object
+        head (Head): Head object
+    """
     def __init__(self, communication: Communication):
         self.communication = communication
         self.capabilities = {}
@@ -47,13 +58,45 @@ class Miloje:
             self.head = None
 
     def get_steppers(self) -> List[Stepper]:
+        """Get steppers from the capabilities
+
+        Args:
+            None
+
+        Returns:
+            List[Stepper]: List of steppers found in MILOJE's capabilities
+        """
         return self.capabilities["M"]
 
     def get_servos(self) -> List[Servo]:
+        """Get servos from the capabilities
+
+        Args:
+            None
+
+        Returns:
+            List[Servo]: List of servos found in MILOJE's capabilities
+        """
         return self.capabilities["S"]
 
     def get_head(self) -> Head | None:
+        """Get the reference to MILOJE's head
+
+        Args:
+            None
+
+        Returns:
+            Head: Reference to MILOJE's head
+        """
         return self.head
 
     def get_wheels(self) -> Wheels | None:
+        """Get the reference to MILOJE's wheels
+
+        Args:
+            None
+
+        Returns:
+            Wheels: Reference to MILOJE's wheels
+        """
         return self.wheels
