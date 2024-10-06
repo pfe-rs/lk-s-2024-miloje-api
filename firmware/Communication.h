@@ -3,7 +3,7 @@
 #include "Capability.h"
 
 /**
-* Communication 
+* Communication is a call for managing serial communication.
 */
 
 class Communication

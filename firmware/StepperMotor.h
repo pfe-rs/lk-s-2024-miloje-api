@@ -3,6 +3,10 @@
 #include "Capability.h"
 #include <AccelStepper.h>
 
+/**
+* StepperMotor is a class for the stepper motors, which is one of the capabilities.
+*/
+
 class StepperMotor : public Capability {
     public:
         StepperMotor(int stepPin, int dirPin);

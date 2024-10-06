@@ -2,6 +2,10 @@
 #define _ULTRASONIC_H
 #include "Capability.h"
 
+/**
+* UltraSonic is a class for the ultra sonic sensor, which is one of the capabilities.
+*/
+
 class UltraSonic : public Capability {
     public:
         UltraSonic(int trigPin, int echoPin);

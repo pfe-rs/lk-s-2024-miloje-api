@@ -3,6 +3,10 @@
 #include "Capability.h"
 #include <Servo.h>
 
+/**
+* ServoMotor is a class for the servo motors, which is one of the capabilities.
+*/
+
 class ServoMotor : public Capability {
     public:
         ServoMotor(int pin);

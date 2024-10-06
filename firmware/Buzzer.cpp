@@ -1,14 +1,14 @@
 #include "Buzzer.h"
 
 /**
-* @brief Constructor for the Buzzer class.
+* Constructor for the Buzzer class.
 * 
 * @param pin The pin number to which the buzzer is connected.
 */
 Buzzer::Buzzer(int pin) : pin(pin) {}
 
 /**
-* @brief Sets up the pin mode for the buzzer.
+* Sets up the pin mode for the buzzer.
 */
 void Buzzer::setup() {
     pinMode(pin, OUTPUT);
