@@ -29,6 +29,22 @@ jobs:
         run: sudo apt-get install doxygen graphviz fonts-freefont-ttf
       - name: Run Doxygen
         run: doxygen
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          cache: 'pip'
+          python-version: "3.12"
+      - name: 'Install requirements'
+        run: |
+          python -m venv .venv
+          source .venv/bin/activate
+          pip install -r requirements.txt
+      - name: 'Modify Actions PATH'
+        run: echo "$PWD/.venv/bin" >> $GITHUB_PATH
+      - name: Generate documentation RST files
+        run: sphinx-apidoc -o docs api
+      - name: Generate documentation HTML
+        run: sphinx-build -b html docs docs/library
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
         with:
