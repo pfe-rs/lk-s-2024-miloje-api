@@ -9,7 +9,7 @@
 HardwareSerial& SERIAL_UART = Serial;
 HardwareSerial& SERIAL_BLUETOOTH = Serial3;
 
-// Declaration of Milojes capabilities
+// Declaration of Milojes capabilities, declare additional capabilities here
 ServoMotor servoMotor1(5);
 ServoMotor servoMotor2(4);
 Battery battery(A2);
@@ -18,7 +18,7 @@ StepperMotor stepperMotor2(3, 41);
 UltraSonic ultraSonic(23,A0);
 Buzzer buzzer(6);
 
-// Array of Capability pointers
+// Array of Capability pointers, add a pointer for any additional capabilities
 Capability* capabilities[] = {
   &servoMotor1,
   &servoMotor2,
